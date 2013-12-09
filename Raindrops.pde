@@ -21,6 +21,12 @@ class Raindrops {
       loc.x=random(width);
       loc.y=0;}
   }
+  void checkCat(catcher c){
+    if(dist(loc.x,loc.y,c.loc.x,c.loc.y) < d/2 + c.d/2){
+      loc.x=random(width);
+      loc.y=0;
+    }
+  }
 }
 
 

@@ -17,6 +17,7 @@ void draw() {
     claire[i].display();
     claire[i].move();
     claire[i].redo();
+    claire[i].checkCat(ruthy);
   }
   ruthy.display();
   
