@@ -4,6 +4,8 @@ int time1 =0;
 int index = 1;
 int score = 0;
 int rx, ry, rh, rw;
+int bx, by, bh, bw;
+int gw;
 Catcher circle; //declaring the catcher
 boolean claire=false;
 
@@ -13,6 +15,11 @@ void setup() {
   ry= height/2;
   rw=100;
   rh=40;
+  //    bx=5;
+  //    by=5;
+  //    bh=15;
+  //    bw=40;
+  //    gw=0;
   circle = new Catcher();
 
   for (int i =0; i<amt; i++) { //giving value to array of raindrops (rain)
@@ -27,7 +34,7 @@ void draw() {
   if (claire) {
     game();
   }
-  if (score>1) {
+  if (score>10) {
     over();
   }
 }
@@ -42,6 +49,7 @@ void game() {
     rain[i].display(); //displaying the raindrops
     rain[i].move(); //making the raindrops fall
     rain[i].checkCat(circle); //checking if the raindrops hit the catcher
+    rain[i].bar();
   }
 
   if (millis()-time1>2500) { //increasing the index by one every two and a half seconds
@@ -66,6 +74,17 @@ void over() {
   textAlign(CENTER, CENTER);
   text("Game Over!", rx, ry);
 }
+
+//void bar() {
+//    fill(0);
+//    stroke(255);
+//    rect(bx, by, bw, bh);
+//    fill(0, 255, 0);
+//    rect(bx, by, gw, bh);
+//    if (cat==true) {
+//      gw++;
+//    }
+//  }
 
 void mousePressed() {
   claire=!claire;
