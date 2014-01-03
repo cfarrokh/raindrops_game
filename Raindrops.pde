@@ -30,6 +30,8 @@ class Raindrops {
   }
   void lives() {
     if (loc.y >= height) {
+      loc.set(-width, 0-1000);
+      vel.set(0, 0);
       lives--;
     }
   }
