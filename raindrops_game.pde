@@ -13,6 +13,7 @@ void setup() {
   rx= width/2;
   ry= height/2;
   rw=100;
+  rh=50;
   circle = new Catcher();
 
   for (int i =0; i<amt; i++) { //giving value to array of raindrops (rain)
