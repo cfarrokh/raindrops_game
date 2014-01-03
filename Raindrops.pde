@@ -4,21 +4,12 @@ class Raindrops {
   PImage shine;
   int d;
   float t;
-  boolean cat;
-  int bx, by, bh, bw;
-  int gw;
-  int cgw;
+
   Raindrops() {
     loc= new PVector (random(width), 0); //giving values 
     vel = new PVector (0, random(2, 3));
     shine = loadImage ("shine.png");
     d=10;
-    bx=5;
-    by=5;
-    bh=15;
-    bw=150;
-    gw=0;
-    cat = false;
   }
   void display() {
     image(shine, loc.x, loc.y, d, d);
@@ -35,15 +26,12 @@ class Raindrops {
       loc.x=random(width); //if the raindrops hits the catcher, it will move the raindrop to the top of the screen
       loc.y=0;
       score++; //if the raindrops hits the catcher, the score increases by one
-      gw++;
     }
   }
-  void bar() {
-    noFill();
-    stroke(255);
-    rect(bx, by, bw, bh);
-    fill(0, 255, 0);
-    rect(0, by, gw, bh);
+  void lives() {
+    if (loc.y >= height) {
+      lives--;
+    }
   }
 }
 

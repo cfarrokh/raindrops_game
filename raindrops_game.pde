@@ -3,9 +3,8 @@ Raindrops[] rain = new Raindrops[amt]; //declaring array of raindrops
 int time1 =0;
 int index = 1;
 int score = 0;
+int lives = 10;
 int rx, ry, rh, rw;
-int bx, by, bh, bw;
-int gw;
 Catcher circle; //declaring the catcher
 boolean claire=false;
 
@@ -14,12 +13,6 @@ void setup() {
   rx= width/2;
   ry= height/2;
   rw=100;
-  rh=40;
-  //    bx=5;
-  //    by=5;
-  //    bh=15;
-  //    bw=40;
-  //    gw=0;
   circle = new Catcher();
 
   for (int i =0; i<amt; i++) { //giving value to array of raindrops (rain)
@@ -34,24 +27,23 @@ void draw() {
   if (claire) {
     game();
   }
-  if (score>10) {
+  if (lives<=0) {
     over();
   }
 }
 
-
 void game() {
   background(0);
   fill(255);
-  textSize (50);
-  text("Score:" +score, width/2, width/2); //displaying the score on the screen
+  textSize (25);
+  text("Score:" +score, width-110, 25); //displaying the score on the screen
+  text("Lives:" +lives, 5, 25);
   for (int i=0; i<index; i++) { //making one raindrop fall at first
     rain[i].display(); //displaying the raindrops
     rain[i].move(); //making the raindrops fall
     rain[i].checkCat(circle); //checking if the raindrops hit the catcher
-    rain[i].bar();
+    rain[i].lives();
   }
-
   if (millis()-time1>2500) { //increasing the index by one every two and a half seconds
     time1=millis(); 
     index++;
@@ -74,17 +66,6 @@ void over() {
   textAlign(CENTER, CENTER);
   text("Game Over!", rx, ry);
 }
-
-//void bar() {
-//    fill(0);
-//    stroke(255);
-//    rect(bx, by, bw, bh);
-//    fill(0, 255, 0);
-//    rect(bx, by, gw, bh);
-//    if (cat==true) {
-//      gw++;
-//    }
-//  }
 
 void mousePressed() {
   claire=!claire;
