@@ -15,25 +15,30 @@ class Raindrops {
     image(shine, loc.x, loc.y, d, d);
   }  
   void move() {
-    loc.add(vel); /*causing the raindrops to fall;
+    loc.add(vel); /*causing the stars to fall;
      same as using loc.x+=vel.x;
      loc.y+=vel.y */
   }
 
   void checkCat(Catcher c) { //function to check if raindrops hit the catcher
     if (dist(loc.x, loc.y, mouseX, c.loc.y) <= d/2 + c.d/2) { /*using the distance between the centers of the raindrop and 
-     the catcher to determine if the raindrop hits the catcher */
-      loc.x=random(width); //if the raindrops hits the catcher, it will move the raindrop to the top of the screen
+     the catcher to determine if the star hits the catcher */
+      loc.x=random(width); //if the stars hits the catcher, it will move the raindrop to the top of the screen
       loc.y=0;
-      score++; //if the raindrops hits the catcher, the score increases by one
+      score++; //if the stars hits the catcher, the score increases by one
     }
   }
   void lives() {
     if (loc.y >= height) {
       loc.set(-width, 0-1000);
       vel.set(0, 0);
-      lives--;
+      lives--; //lives decrease by one when stars hit bottom
     }
+  }
+  void yes(){
+    image(shine, loc.x, loc.y, d+10, d+10);
+    loc.x=100;
+    loc.y=height/2;
   }
 }
 
