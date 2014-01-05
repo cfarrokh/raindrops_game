@@ -30,13 +30,13 @@ void setup() {
 }
 
 void draw() {
- if (start==false && done==false) { //when nothing has been pressed, display start screen
+  if (start==false && done==false) { //when nothing has been pressed, display start screen
     star();
   }
   if (start==true  || done==true) { //if played for the 1st time, or being replayed, play the game
     game();
   }
-  if (lives<=0 && start==true && done==false) { //when the lives are zero, display game over
+  if (lives<=0 && start==true && done==false || lives<=0 && start==true && done==true ) { //when the lives are zero, display game over
     over();
   }
 }
@@ -94,19 +94,23 @@ void over() {
   fill(255);
   textAlign(CENTER, CENTER);
   text("Game Over!", rx, ry-50);
-  fill(0,255,0);
-  text("Play again?",rx,ry);
-  over.yes(); //shows one star 
+  fill(0, 255, 0);
+  text("Play again?", rx, ry);
+  over.yes(); //shows one star
 }
 
 void mousePressed() {
   if (start==false && done==false && mouseX<(rx+rw) && mouseX>rx && mouseY<(ry) && mouseY>(ry-50)) {
     start=true; //if the start button is clicked, start=true
   }
-  if (start==true && done==false && mouseX<(over.loc.x+(over.d+10)) && mouseX>over.loc.x && mouseY<(over.loc.y+(over.d+10)) && mouseY>over.loc.y){
+  if (start==true && done==false && mouseX<(over.loc.x+(over.d+10)) && mouseX>over.loc.x && mouseY<(over.loc.y+(over.d+10)) && mouseY>over.loc.y) {
     done=true;
     lives=10;
     score=0; //if the star is clicked to replay the game, it restarts the game
+  }
+  if (start==true && done==true && mouseX<(over.loc.x+(over.d+10)) && mouseX>over.loc.x && mouseY<(over.loc.y+(over.d+10)) && mouseY>over.loc.y) {
+    score=0;
+    lives=10;
   }
 }
 
